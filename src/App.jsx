@@ -1,15 +1,23 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import About from "./pages/About";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Details from "./pages/Details";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
-import Details from "./pages/Details";
+import "./App.css";
+
+import { createContext, useState } from "react";
+
+export const CartContext = createContext();
 
 function App() {
+  const [cart, setCart] = useState([]);
+
   return (
-    <div>
+    <CartContext.Provider value={{ cart, setCart }}>
       <Routes>
         <Route
           path="/"
@@ -51,8 +59,10 @@ function App() {
             </MainLayout>
           }
         ></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
-    </div>
+    </CartContext.Provider>
   );
 }
 

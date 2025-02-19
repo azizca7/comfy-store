@@ -1,23 +1,35 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function Card({ product }) {
+function Card({ product, viewMode }) {
   const navigate = useNavigate();
-  function handleRedirect() {
+
+  function handle() {
     navigate(`/products/${product.id}`);
   }
+
   return (
     <div
-      onClick={handleRedirect}
-      className="w-[30%] shadow-md rounded-lg p-4 pb-5 text-center cursor-pointer hover:shadow-xl"
+      onClick={handle}
+      className={`${
+        viewMode == "grid"
+          ? "w-full shadow-md rounded-lg p-4 pb-5 text-center cursor-pointer hover:shadow-xl"
+          : "flex items-center shadow-md rounded-lg p-4 pb-5 cursor-pointer hover:shadow-xl mb-4"
+      }`}
     >
       <img
-        className="w-full rounded-lg h-[200px] object-cover"
+        className={`${
+          viewMode == "grid"
+            ? "w-full rounded-lg h-auto aspect-video object-cover"
+            : "w-55 h-50 rounded-lg object-cover mr-6"
+        }`}
         src={product?.attributes?.image}
-        alt=""
       />
-      <h4 className="text-xl mt-2">{product?.attributes?.title}</h4>
-      <p className="text-xl mt-2">{product?.attributes?.price}</p>
+      <div className="">
+        <h2 className="text-xl mt-2">{product?.attributes?.title}</h2>
+        <p className="text-xl mt-2">
+          <b>$ {product?.attributes?.price}</b>
+        </p>
+      </div>
     </div>
   );
 }
