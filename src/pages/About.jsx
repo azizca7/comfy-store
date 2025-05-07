@@ -3,7 +3,7 @@ import React from "react";
 
 function About() {
   return (
-    <section className="min-h-screen py-20 px-4 md:px-10 bg-white dark:bg-black text-gray-800 dark:text-white">
+    <section className="min-h-screen py-20 px-4 md:px-10 bg-white text-gray-800">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-purple-600 dark:text-purple-400">
           About Comfy Store
