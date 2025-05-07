@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/ui/Button";
 
 function Home() {
   return (
@@ -15,9 +15,7 @@ function Home() {
           lifestyle items made to keep you feeling great every day.
         </p>
         <Link href="/products">
-          <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white">
-            Shop Now
-          </Button>
+          <Button>Shop Now</Button>
         </Link>
       </div>
     </section>
