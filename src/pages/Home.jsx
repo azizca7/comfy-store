@@ -22,14 +22,14 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-white text-gray-800">
-      <section className=" py-14 text-center">
+      <section className="my-6 text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Comfy Store</h1>
         <p className="text-lg mb-6 max-w-xl mx-auto">
           Find the best furniture that brings comfort and style to your home.
         </p>
       </section>
 
-      <section className="py-10 px-4 max-w-6xl mx-auto">
+      <section className="my-4 px-4 max-w-6xl mx-auto">
         <h2 className="text-2xl font-semibold mb-8 text-center">
           Featured Products
         </h2>
