@@ -1,24 +1,66 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import Button from "@/components/ui/Button";
+import React, { useEffect, useState } from "react";
+import { http } from "../axios";
+import { Link } from "react-router-dom";
+import Card from "../components/Card";
 
 function Home() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    http
+      .get("/products?limit=3")
+      .then((res) => {
+        if (res.status === 200) {
+          setProducts(res.data.data);
+        }
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 md:px-10 bg-white dark:bg-black text-gray-800 dark:text-white">
-      <div className="text-center max-w-3xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-purple-600 dark:text-purple-400">
-          Welcome to Comfy Store
-        </h1>
-        <p className="text-lg md:text-xl mb-8 leading-relaxed">
-          Discover your comfort zone. Find cozy clothing, home essentials, and
-          lifestyle items made to keep you feeling great every day.
+    <main className="min-h-screen bg-white text-gray-800">
+      <section className=" py-20 text-center">
+        <h1 className="text-4xl font-bold mb-4">Welcome to Comfy Store</h1>
+        <p className="text-lg mb-6 max-w-xl mx-auto">
+          Find the best furniture that brings comfort and style to your home.
         </p>
-        <Link href="/products">
-          <Button>Shop Now</Button>
-        </Link>
-      </div>
-    </section>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-16 px-4 max-w-6xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-8 text-center">
+          Featured Products
+        </h2>
+
+        {loading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {products.map((product, idx) => (
+              <div
+                key={idx}
+                className="border rounded-lg shadow-md p-4 flex flex-col justify-between"
+              >
+                <Card product={product} viewMode="grid" />
+                <div className="mt-4 text-center"></div>
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="text-center">
+          <Link to={`/products`}>
+            <button className="px-8 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition cursor-pointer">
+              View details
+            </button>
+          </Link>
+        </div>
+      </section>
+
+    
+    </main>
   );
 }
 
