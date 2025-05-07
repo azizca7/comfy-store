@@ -24,12 +24,11 @@ function Home() {
     <main className="min-h-screen bg-white text-gray-800">
       <section className=" py-20 text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to Comfy Store</h1>
-        <p className="text-lg mb-6 max-w-xl mx-auto">
+        <p className="text-lg mb-2 max-w-xl mx-auto">
           Find the best furniture that brings comfort and style to your home.
         </p>
       </section>
 
-      {/* Featured Products */}
       <section className="py-16 px-4 max-w-6xl mx-auto">
         <h2 className="text-2xl font-semibold mb-8 text-center">
           Featured Products
